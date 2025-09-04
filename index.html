@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MMUSDA Medical Missionary – Registration</title>
+  <style>
+    :root {
+      --bg: #f7fafc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #6b7280;
+      --brand: #10b981; /* green */
+      --brand-2: #2563eb; /* blue */
+      --accent: #22d3ee; /* cyan */
+      --danger: #ef4444;
+      --success: #16a34a;
+      --ring: rgba(34, 211, 238, .35);
+      --radius: 18px;
+      --shadow: 0 10px 30px rgba(0, 0, 0, .07);
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background: radial-gradient(1000px 600px at 20% -10%, rgba(34, 211, 238, .15), transparent 60%), radial-gradient(800px 600px at 120% 10%, rgba(37, 99, 235, .12), transparent 55%), var(--bg);
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      padding: 12px;
+      line-height: 1.6;
+    }
+
+    .app {
+      margin: 0;
+      width: 100%;
+      max-width: 880px;
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+      border: 1px solid rgba(15, 23, 42, .06);
+      backdrop-filter: saturate(120%) blur(6px);
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    header {
+      padding: 22px 24px 12px 24px;
+      background: linear-gradient(180deg, rgba(37, 99, 235, .08), transparent);
+    }
+
+    .brand {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .brand .logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: radial-gradient(120% 120% at 20% 10%, var(--brand), var(--brand-2));
+      box-shadow: 0 8px 24px rgba(16, 185, 129, .35), inset 0 0 0 2px rgba(255, 255, 255, .25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    h1 {
+      font-size: 22px;
+      margin: 0 0 4px;
+    }
+
+    p.subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Progress indicator */
+    .progress-wrap {
+      padding: 0 24px 18px;
+    }
+
+    .progress {
+      height: 8px;
+      background: #e5e7eb;
+      border-radius: 999px;
+      overflow: hidden;
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, .06);
+    }
+
+    .bar {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--brand), var(--brand-2));
+      transition: width .5s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    /* Steps */
+    .content {
+      padding: 8px 24px 24px;
+    }
+
+    .step {
+      display: none;
+      animation: fadeSlide .45s ease;
+    }
+
+    .step.active {
+      display: block;
+    }
+
+    @keyframes fadeSlide {
+      from {
+        opacity: 0;
+        transform: translateY(10px) scale(.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .grid {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(12, 1fr);
+    }
+
+    .col-12 {
+      grid-column: span 12;
+    }
+
+    .col-6 {
+      grid-column: span 12;
+    }
+
+    @media (min-width: 700px) {
+      .col-6 {
+        grid-column: span 6;
+      }
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      margin: 4px 0 6px;
+      font-weight: 500;
+    }
+
+    .req::after {
+      content: " *";
+      color: var(--brand-2);
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      background: #fff;
+      box-shadow: 0 1px 0 rgba(0, 0, 0, .02);
+      outline: none;
+      transition: var(--transition);
+      font-size: 15px;
+    }
+
+    textarea {
+      min-height: 92px;
+      resize: vertical;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 6px var(--ring);
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid #eef2f7;
+      border-radius: 16px;
+      padding: 16px 16px 10px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .card:hover {
+      box-shadow: 0 15px 35px rgba(0, 0, 0, .1);
+    }
+
+    .hint {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .radio-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid #e5e7eb;
+      border-radius: 999px;
+      padding: 10px 14px;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 1px 1px rgba(0, 0, 0, .03);
+      user-select: none;
+    }
+
+    .chip input {
+      display: none;
+    }
+
+    .chip.active {
+      border-color: var(--brand-2);
+      box-shadow: 0 0 0 6px var(--ring);
+    }
+
+    .chip:active {
+      transform: scale(.98);
+    }
+
+    /* FIXED COMMITMENT CHECKBOX STYLES */
+    .commitment-checkbox {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      margin-top: 16px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .commitment-checkbox:hover {
+      border-color: var(--accent);
+      background-color: rgba(34, 211, 238, 0.05);
+    }
+
+    .commitment-checkbox input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      margin: 0;
+      flex-shrink: 0;
+    }
+
+    .commitment-checkbox span {
+      font-size: 15px;
+      line-height: 1.4;
+    }
+
+    .commitment-checkbox:has(input:checked) {
+      border-color: var(--brand-2);
+      background-color: rgba(37, 99, 235, 0.05);
+    }
+    /* END OF FIXED STYLES */
+
+    .actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 14px;
+      padding: 12px 16px;
+      font-weight: 600;
+      cursor: pointer;
+      background: #111827;
+      color: #fff;
+      box-shadow: 0 14px 24px rgba(17, 24, 39, .2);
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn.secondary {
+      background: #e5e7eb;
+      color: #111827;
+      box-shadow: none;
+    }
+
+    .btn.ghost {
+      background: transparent;
+      border: 1px solid #e5e7eb;
+      color: #111827;
+    }
+
+    .btn:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn.brand {
+      background: linear-gradient(90deg, var(--brand), var(--brand-2));
+    }
+
+    .center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .divider {
+      height: 1px;
+      background: #eef2f7;
+      margin: 14px 0;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      transform: translateX(-50%) translateY(20px);
+      background: #111827;
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 12px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .25s, transform .25s;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, .25);
+      font-size: 14px;
+      z-index: 1000;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%);
+    }
+
+    .ok {
+      color: var(--success);
+    }
+
+    .danger {
+      color: var(--danger);
+    }
+
+    .success-burst {
+      width: 90px;
+      height: 90px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, var(--brand), var(--brand-2));
+      margin: 0 auto 10px;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(37, 99, 235, .35), inset 0 0 0 4px rgba(255, 255, 255, .6);
+      animation: pulse 2s infinite;
+    }
+
+    .success-burst::after, .success-burst::before {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      inset: -8px;
+      border: 2px solid rgba(34, 211, 238, .4);
+      animation: pulse 1.8s infinite;
+    }
+
+    .success-burst::before {
+      animation-delay: .5s;
+    }
+
+    @keyframes pulse {
+      from {
+        opacity: .8;
+        transform: scale(1);
+      }
+      to {
+        opacity: 0;
+        transform: scale(1.4);
+      }
+    }
+
+    .check {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) rotate(-6deg);
+      font-size: 44px;
+      color: white;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, .25);
+    }
+
+    .notice {
+      background: linear-gradient(180deg, rgba(34, 211, 238, .14), rgba(16, 185, 129, .08));
+      border: 1px solid rgba(34, 211, 238, .35);
+      padding: 12px;
+      border-radius: 14px;
+      font-size: 14px;
+      color: #065f46;
+    }
+
+    /* Form validation styles */
+    .error {
+      color: var(--danger);
+      font-size: 12px;
+      margin-top: 4px;
+      display: none;
+    }
+
+    input:invalid, select:invalid, textarea:invalid {
+      border-color: var(--danger);
+    }
+
+    input:invalid + .error, select:invalid + .error, textarea:invalid + .error {
+      display: block;
+    }
+
+    /* Loading spinner */
+    .spinner {
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+      display: inline-block;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Confetti animation */
+    @keyframes confettiFall {
+      0% { transform: translateY(-100vh) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
+
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      opacity: 0.7;
+      z-index: 100;
+      animation: confettiFall linear forwards;
+    }
+  </style>
+</head>
+<body>
+  <div class="app" role="application" aria-label="MMUSDA Medical Missionary Registration">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true">MM</div>
+        <div>
+          <h1>MMUSDA Medical Missionary</h1>
+          <p class="subtitle">Masai Mara University SDA Church • Registration for First Years</p>
+        </div>
+      </div>
+    </header>
+
+    <div class="progress-wrap" aria-hidden="true">
+      <div class="progress"><div class="bar" id="progressBar"></div></div>
+    </div>
+
+    <div class="content">
+      <!-- STEP 1: Basic Registration -->
+      <section class="step active" data-step="1" aria-labelledby="s1-title">
+        <div class="card">
+          <h2 id="s1-title">Step 1 — Registration Info</h2>
+          <p class="hint">Kindly fill your details. Keep it simple — minimal restrictions here.</p>
+          <div class="grid">
+            <div class="col-12 col-6">
+              <label class="req" for="name">Full Name</label>
+              <input id="name" name="name" autocomplete="name" placeholder="e.g., Jane A. Doe" required>
+              <div class="error" id="name-error">Please enter your full name</div>
+            </div>
+            <div class="col-12 col-6">
+              <label class="req">Gender</label>
+              <div class="radio-row" role="group" aria-label="Gender">
+                <label class="chip" data-chip="gender"><input type="radio" name="gender" value="Male" required>Male</label>
+                <label class="chip" data-chip="gender"><input type="radio" name="gender" value="Female" required>Female</label>
+              </div>
+              <div class="error" id="gender-error">Please select your gender</div>
+            </div>
+            <div class="col-12 col-6">
+              <label class="req" for="dob">Date of Birth</label>
+              <input id="dob" name="dob" type="date" required>
+              <div class="error" id="dob-error">Please enter your date of birth</div>
+            </div>
+            <div class="col-12 col-6">
+              <label class="req" for="phone">Phone Number</label>
+              <input id="phone" name="phone" type="tel" inputmode="tel" placeholder="07xx xxx xxx" pattern="[0-9]{10}" required>
+              <div class="error" id="phone-error">Please enter a valid phone number (10 digits)</div>
+            </div>
+            <div class="col-12 col-6">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com">
+              <div class="error" id="email-error">Please enter a valid email address</div>
+            </div>
+            <div class="col-12 col-6">
+              <label for="homechurch">Home Church</label>
+              <input id="homechurch" name="homechurch" placeholder="e.g., Kisumu Central SDA">
+            </div>
+            <div class="col-12 col-6">
+              <label for="county">County</label>
+              <select id="county" name="county"></select>
+            </div>
+            <div class="col-12 col-6">
+              <label for="course">Course</label>
+              <input id="course" name="course" placeholder="e.g., Computer Science">
+            </div>
+          </div>
+          <div class="actions">
+            <button class="btn ghost" id="saveDraft1" type="button">Save Progress</button>
+            <button class="btn brand" id="next1" type="button">Continue</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 2: Knowledge Branch -->
+      <section class="step" data-step="2" aria-labelledby="s2-title">
+        <div class="card">
+          <h2 id="s2-title">Step 2 — Laws of Health</h2>
+          <p class="hint">No right or wrong here — we're just learning where to begin.</p>
+
+          <label class="req">Do you have some understanding of the Laws of Health?</label>
+          <div class="radio-row" role="group" aria-label="Understanding of Laws of Health">
+            <label class="chip" data-chip="know"><input type="radio" name="know" value="Yes" required>Yes</label>
+            <label class="chip" data-chip="know"><input type="radio" name="know" value="No" required>No</label>
+          </div>
+          <div class="error" id="know-error">Please select an option</div>
+
+          <!-- YES branch -->
+          <div id="know-yes" style="display:none;margin-top:10px">
+            <div class="divider"></div>
+            <div class="notice"><strong>Great!</strong> Please fill the items below (free text).</div>
+            <div class="grid" style="margin-top:10px">
+              <div class="col-12"><label for="newstart">NEWSTART Principles (write what you know)</label>
+                <textarea id="newstart" placeholder="N, E, W, S, T, A, Re, T"></textarea>
+              </div>
+              <div class="col-12 col-6">
+                <label for="egwBooks">Which EGW health books have you read?</label>
+                <textarea id="egwBooks" placeholder="e.g., Ellen White Books"></textarea>
+              </div>
+              <div class="col-12 col-6">
+                <label for="otherBooks">Apart from EGW, which other health books have you read?</label>
+                <textarea id="otherBooks" placeholder="List any other authors/books"></textarea>
+              </div>
+              <div class="col-12">
+                <label for="topicsTeach">Health topics you can teach if given a chance</label>
+                <textarea id="topicsTeach" placeholder="e.g., Plant-based cooking, Hydrotherapy basics, Natural remedies, Physiotherapy"></textarea>
+              </div>
+              <div class="col-12">
+                <label for="reforms">Have you reformed in any diet/health practice? If yes, specify.</label>
+                <textarea id="reforms" placeholder="e.g., Stopped energy drinks, Adopted whole-food plant-based diet"></textarea>
+              </div>
+            </div>
+            <div class="center" style="margin-top:16px">
+              <div>
+                <div class="success-burst" aria-hidden="true"><div class="check">✓</div></div>
+                <h3 class="ok" style="margin:8px 0 4px">Congratulations!</h3>
+                <p class="hint">Thank you for your dedication to health reform and learning.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- NO branch -->
+          <div id="know-no" style="display:none;margin-top:10px">
+            <div class="divider"></div>
+            <div class="notice"><strong>Welcome!</strong> Let's begin the journey together.</div>
+            <div class="grid" style="margin-top:10px">
+              <div class="col-12">
+                <label for="desire">Do you desire to understand more about healthful living?</label>
+                <textarea id="desire" placeholder="Share briefly"></textarea>
+              </div>
+              <div class="col-12">
+                <label for="attend1">Are you willing to attend and participate in classes and activities by the Health Department?</label>
+                <textarea id="attend1" placeholder="Yes/No + any note"></textarea>
+              </div>
+              <div class="col-12">
+                <label for="followLight">Will you follow the light when convicted of the Third Angel's Message?</label>
+                <textarea id="followLight" placeholder="Your response"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button class="btn secondary" data-prev>Back</button>
+            <button class="btn brand" data-next>Proceed to Commitment</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 3: Commitment (For All) -->
+      <section class="step" data-step="3" aria-labelledby="s3-title">
+        <div class="card">
+          <h2 id="s3-title">Step 3 — Commitment</h2>
+          <p class="hint">This is general for all applicants.</p>
+          <div class="notice">
+            By submitting this form, you promise to <strong>attend and participate</strong> in all classes and activities organized by the Health Department. You agree to be a <strong>servant</strong> and a faithful representative of the <strong>right hand of the Gospel</strong>. You will be willing to <strong>learn, relearn, and unlearn</strong> as the Spirit leads.
+          </div>
+
+          <!-- FIXED COMMITMENT CHECKBOX -->
+          <label class="commitment-checkbox">
+            <input type="checkbox" id="commit" required>
+            <span>I commit to this promise.</span>
+          </label>
+          <div class="error" id="commit-error">Please agree to the commitment to continue</div>
+
+          <div class="actions">
+            <button class="btn secondary" data-prev>Back</button>
+            <button class="btn brand" id="submitBtn" type="button">
+              <span id="submitText">Submit to WhatsApp</span>
+              <span class="spinner" id="submitSpinner" style="display: none;"></span>
+            </button>
+          </div>
+          <p class="hint" style="margin-top:8px">Submitting opens WhatsApp (or WhatsApp Web) with a pre-filled message to the Health & Temperance team.</p>
+        </div>
+      </section>
+
+      <!-- FINAL THANK YOU -->
+      <section class="step" data-step="4" aria-labelledby="s4-title">
+        <div class="card center">
+          <div>
+            <div class="success-burst" aria-hidden="true"><div class="check">✓</div></div>
+            <h2 id="s4-title">Thank you for registering!</h2>
+            <p class="hint">Welcome to the MMUSDA Medical Missionary team.</p>
+            <div class="actions" style="justify-content:center">
+              <button class="btn ghost" id="startOver" type="button">Start Over</button>
+              <button class="btn brand" id="downloadCopy" type="button">Download Copy</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    // Modern JavaScript with better structure and error handling
+    (function() {
+      'use strict';
+      
+      /**********************
+       * Utilities
+       **********************/
+      const qs = (s, el = document) => el.querySelector(s);
+      const qsa = (s, el = document) => [...el.querySelectorAll(s)];
+      
+      const utils = {
+        toast: (msg, type = 'default') => {
+          const t = qs('#toast');
+          t.textContent = msg;
+          t.className = 'toast';
+          if (type === 'error') t.classList.add('danger');
+          if (type === 'success') t.classList.add('ok');
+          t.classList.add('show');
+          setTimeout(() => t.classList.remove('show'), 3000);
+        },
+        
+        setActiveChip: (chips, input) => {
+          chips.forEach(c => c.classList.toggle('active', c.querySelector('input').checked));
+        },
+        
+        validateEmail: (email) => {
+          return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        },
+        
+        validatePhone: (phone) => {
+          return /^[0-9]{10}$/.test(phone);
+        },
+        
+        createConfetti: () => {
+          const colors = ['#10b981', '#2563eb', '#22d3ee', '#f59e0b', '#ef4444'];
+          for (let i = 0; i < 50; i++) {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            confetti.style.width = (Math.random() * 10 + 5) + 'px';
+            confetti.style.height = (Math.random() * 10 + 5) + 'px';
+            document.body.appendChild(confetti);
+            
+            setTimeout(() => {
+              confetti.remove();
+            }, 5000);
+          }
+        },
+        
+        downloadText: (filename, text) => {
+          const element = document.createElement('a');
+          element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+          element.setAttribute('download', filename);
+          element.style.display = 'none';
+          document.body.appendChild(element);
+          element.click();
+          document.body.removeChild(element);
+        }
+      };
+
+      /**********************
+       * Kenyan counties
+       **********************/
+      const counties = [
+        "Baringo", "Bomet", "Bungoma", "Busia", "Elgeyo-Marakwet", "Embu", "Garissa", "Homa Bay", "Isiolo", "Kajiado",
+        "Kakamega", "Kericho", "Kiambu", "Kilifi", "Kirinyaga", "Kisii", "Kisumu", "Kitui", "Kwale", "Laikipia",
+        "Lamu", "Machakos", "Makueni", "Mandera", "Marsabit", "Meru", "Migori", "Mombasa", "Murang'a", "Nairobi",
+        "Nakuru", "Nandi", "Narok", "Nyamira", "Nyandarua", "Nyeri", "Samburu", "Siaya", "Taita-Taveta", "Tana River",
+        "Tharaka-Nithi", "Trans Nzoia", "Turkana", "Uasin Gishu", "Vihiga", "Wajir", "West Pokot"
+      ];
+      
+      const countySel = qs('#county');
+      countySel.innerHTML = '<option value="">Select County</option>' + counties.map(c => `<option>${c}</option>`).join('');
+
+      /**********************
+       * Stepper
+       **********************/
+      let current = 1;
+      const totalSteps = 4;
+      const progressBar = qs('#progressBar');
+
+      const stepper = {
+        showStep: (n) => {
+          current = Math.max(1, Math.min(n, totalSteps));
+          qsa('.step').forEach(s => s.classList.remove('active'));
+          qs(`.step[data-step="${current}"]`).classList.add('active');
+          const pct = ((current - 1) / (totalSteps - 1)) * 100;
+          progressBar.style.width = pct + '%';
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        },
+        
+        validateStep1: () => {
+          const name = qs('#name').value.trim();
+          const gender = qs('input[name="gender"]:checked');
+          const dob = qs('#dob').value;
+          const phone = qs('#phone').value.trim();
+          const email = qs('#email').value.trim();
+          
+          let isValid = true;
+          
+          if (!name) {
+            utils.toast('Please provide your name to continue.', 'error');
+            qs('#name').focus();
+            return false;
+          }
+          
+          if (!gender) {
+            utils.toast('Please select your gender.', 'error');
+            return false;
+          }
+          
+          if (!dob) {
+            utils.toast('Please provide your date of birth.', 'error');
+            qs('#dob').focus();
+            return false;
+          }
+          
+          if (!phone) {
+            utils.toast('Please provide your phone number.', 'error');
+            qs('#phone').focus();
+            return false;
+          }
+          
+          if (!utils.validatePhone(phone)) {
+            utils.toast('Please enter a valid phone number (10 digits).', 'error');
+            qs('#phone').focus();
+            return false;
+          }
+          
+          if (email && !utils.validateEmail(email)) {
+            utils.toast('Please enter a valid email address.', 'error');
+            qs('#email').focus();
+            return false;
+          }
+          
+          return true;
+        },
+        
+        validateStep2: () => {
+          const knowChecked = qs('input[name="know"]:checked');
+          if (!knowChecked) {
+            utils.toast('Please indicate if you understand the Laws of Health.', 'error');
+            return false;
+          }
+          return true;
+        },
+        
+        validateStep3: () => {
+          if (!qs('#commit').checked) {
+            utils.toast('Please agree to the commitment to continue.', 'error');
+            return false;
+          }
+          return true;
+        }
+      };
+
+      // Navigation event listeners
+      qs('#next1').addEventListener('click', () => {
+        if (stepper.validateStep1()) {
+          stepper.showStep(2);
+        }
+      });
+      
+      qsa('[data-next]').forEach(btn => {
+        if (btn.id !== 'next1') {
+          btn.addEventListener('click', () => {
+            if ((current === 2 && stepper.validateStep2()) || (current === 3 && stepper.validateStep3())) {
+              stepper.showStep(current + 1);
+            }
+          });
+        }
+      });
+      
+      qsa('[data-prev]').forEach(btn => btn.addEventListener('click', () => {
+        stepper.showStep(current - 1);
+      }));
+
+      /**********************
+       * Chips (radios)
+       **********************/
+      // Gender chips
+      const genderChips = qsa('[data-chip="gender"]');
+      genderChips.forEach(ch => ch.addEventListener('click', () => {
+        ch.querySelector('input').checked = true;
+        utils.setActiveChip(genderChips);
+      }));
+      
+      // Knowledge chips
+      const knowChips = qsa('[data-chip="know"]');
+      const knowYes = qs('#know-yes');
+      const knowNo = qs('#know-no');
+      
+      knowChips.forEach(ch => ch.addEventListener('click', () => {
+        ch.querySelector('input').checked = true;
+        utils.setActiveChip(knowChips);
+        const val = qs('input[name="know"]:checked')?.value;
+        knowYes.style.display = (val === 'Yes') ? 'block' : 'none';
+        knowNo.style.display = (val === 'No') ? 'block' : 'none';
+      }));
+
+      /**********************
+       * Save draft (localStorage)
+       **********************/
+      const collectData = () => {
+        const genderChecked = qs('input[name="gender"]:checked');
+        const knowChecked = qs('input[name="know"]:checked');
+        
+        return {
+          program: 'Registration for Joining MMUSDA Medical Missionary',
+          name: qs('#name').value.trim(),
+          gender: genderChecked ? genderChecked.value : '',
+          dob: qs('#dob').value,
+          phone: qs('#phone').value.trim(),
+          email: qs('#email').value.trim(),
+          homechurch: qs('#homechurch').value.trim(),
+          county: qs('#county').value,
+          course: qs('#course').value.trim(),
+          know: knowChecked ? knowChecked.value : '',
+          newstart: qs('#newstart')?.value.trim() || '',
+          egwBooks: qs('#egwBooks')?.value.trim() || '',
+          otherBooks: qs('#otherBooks')?.value.trim() || '',
+          topicsTeach: qs('#topicsTeach')?.value.trim() || '',
+          reforms: qs('#reforms')?.value.trim() || '',
+          desire: qs('#desire')?.value.trim() || '',
+          attend1: qs('#attend1')?.value.trim() || '',
+          followLight: qs('#followLight')?.value.trim() || '',
+          commit: qs('#commit').checked
+        };
+      };
+      
+      const saveDraft = () => {
+        try {
+          const data = collectData();
+          localStorage.setItem('mmusda_draft', JSON.stringify(data));
+          utils.toast('Progress saved locally.', 'success');
+        } catch (e) {
+          utils.toast('Failed to save progress.', 'error');
+          console.error('Save error:', e);
+        }
+      };
+      
+      const loadDraft = () => {
+        try {
+          const raw = localStorage.getItem('mmusda_draft');
+          if (!raw) return;
+          
+          const d = JSON.parse(raw);
+          
+          // Step1
+          if (d.name) qs('#name').value = d.name;
+          if (d.gender) {
+            qsa('input[name="gender"]').forEach(r => r.checked = (r.value === d.gender));
+            utils.setActiveChip(genderChips);
+          }
+          if (d.dob) qs('#dob').value = d.dob;
+          if (d.phone) qs('#phone').value = d.phone;
+          if (d.email) qs('#email').value = d.email;
+          if (d.homechurch) qs('#homechurch').value = d.homechurch;
+          if (d.county) qs('#county').value = d.county;
+          if (d.course) qs('#course').value = d.course;
+          
+          // Step2
+          if (d.know) {
+            qsa('input[name="know"]').forEach(r => r.checked = (r.value === d.know));
+            utils.setActiveChip(knowChips);
+            knowYes.style.display = (d.know === 'Yes') ? 'block' : 'none';
+            knowNo.style.display = (d.know === 'No') ? 'block' : 'none';
+          }
+          
+          ['newstart', 'egwBooks', 'otherBooks', 'topicsTeach', 'reforms', 'desire', 'attend1', 'followLight'].forEach(id => {
+            if (d[id]) qs('#' + id).value = d[id];
+          });
+          
+          if (d.commit) qs('#commit').checked = true;
+        } catch (e) {
+          console.error('Load error:', e);
+        }
+      };
+      
+      qs('#saveDraft1').addEventListener('click', saveDraft);
+      window.addEventListener('load', loadDraft);
+
+      /**********************
+       * Build WhatsApp message
+       **********************/
+      const toWhatsApp = () => {
+        const d = collectData();
+
+        // Validation
+        if (!d.name) {
+          utils.toast('Please add your name.', 'error');
+          stepper.showStep(1);
+          return;
+        }
+        
+        if (!d.commit) {
+          utils.toast('Please tick the commitment checkbox.', 'error');
+          return;
+        }
+        
+        // Show loading state
+        qs('#submitText').textContent = 'Processing...';
+        qs('#submitSpinner').style.display = 'inline-block';
+        qs('#submitBtn').disabled = true;
+        
+        setTimeout(() => {
+          // Compact, readable summary
+          const lines = [
+            `MMUSDA Medical Missionary Registration`,
+            `— — —`,
+            `Name: ${d.name}`,
+            `Gender: ${d.gender || '-'}`,
+            `DOB: ${d.dob || '-'}`,
+            `Phone: ${d.phone || '-'}`,
+            `Email: ${d.email || '-'}`,
+            `Home Church: ${d.homechurch || '-'}`,
+            `County: ${d.county || '-'}`,
+            `Course: ${d.course || '-'}`,
+            `Understanding of Laws of Health: ${d.know || '-'}`,
+          ];
+
+          if (d.know === 'Yes') {
+            lines.push(
+              `NEWSTART (as understood): ${d.newstart || '-'}`,
+              `EGW Health Books: ${d.egwBooks || '-'}`,
+              `Other Health Books: ${d.otherBooks || '-'}`,
+              `Topics I Can Teach: ${d.topicsTeach || '-'}`,
+              `Reforms Made: ${d.reforms || '-'}`
+            );
+          } else if (d.know === 'No') {
+            lines.push(
+              `Desire to Learn: ${d.desire || '-'}`,
+              `Willing to Attend/Participate: ${d.attend1 || '-'}`,
+              `Follow the Light (3rd Angel): ${d.followLight || '-'}`
+            );
+          }
+
+          lines.push(`Commitment: ✅ I commit to attend, participate, and be a faithful representative.`);
+
+          const message = encodeURIComponent(lines.join('\n'));
+          // Target WhatsApp number (international format without +)
+          const phoneTarget = '254759167209'; // +254 759 167 209
+          const wa = `https://wa.me/${phoneTarget}?text=${message}`;
+
+          // Fire WhatsApp and move to "Thank you"
+          window.open(wa, '_blank');
+          
+          // Save a lightweight receipt locally
+          localStorage.setItem('mmusda_last_submit', new Date().toISOString());
+          localStorage.removeItem('mmusda_draft');
+          
+          // Show success animation
+          utils.createConfetti();
+          
+          // Reset button state
+          qs('#submitText').textContent = 'Submit to WhatsApp';
+          qs('#submitSpinner').style.display = 'none';
+          qs('#submitBtn').disabled = false;
+          
+          stepper.showStep(4);
+        }, 1000);
+      };
+
+      qs('#submitBtn').addEventListener('click', toWhatsApp);
+      
+      /**********************
+       * Additional functionality
+       **********************/
+      qs('#startOver').addEventListener('click', () => {
+        if (confirm('Are you sure you want to start over? All your progress will be lost.')) {
+          localStorage.removeItem('mmusda_draft');
+          window.location.reload();
+        }
+      });
+      
+      qs('#downloadCopy').addEventListener('click', () => {
+        const d = collectData();
+        const text = Object.entries(d)
+          .map(([key, value]) => `${key}: ${value}`)
+          .join('\n');
+        
+        utils.downloadText('mmusda-registration.txt', text);
+        utils.toast('Registration copy downloaded.', 'success');
+      });
+
+      // Prefill course from URL ?course=...
+      const url = new URL(window.location.href);
+      const preCourse = url.searchParams.get('course');
+      if (preCourse) {
+        qs('#course').value = preCourse;
+      }
+
+      // Accessibility: Enter to proceed for some fields
+      qsa('input,select,textarea').forEach(el => {
+        el.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' && current === 1) {
+            e.preventDefault();
+            qs('#next1').click();
+          }
+        });
+      });
+      
+      // Real-time validation
+      qs('#phone').addEventListener('blur', function() {
+        if (this.value && !utils.validatePhone(this.value)) {
+          utils.toast('Please enter a valid 10-digit phone number', 'error');
+        }
+      });
+      
+      qs('#email').addEventListener('blur', function() {
+        if (this.value && !utils.validateEmail(this.value)) {
+          utils.toast('Please enter a valid email address', 'error');
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
